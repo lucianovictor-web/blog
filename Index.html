@@ -1,100 +1,299 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curiosidades do Batman</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gotham Nexus | O Blog do Batman</title>
+    <style>
+        /* Cores e Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #121214;
+            color: #e1e1e6;
+            line-height: 1.6;
+        }
+        a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0f0f0f;
-      color: #fff;
-    }
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1350&q=80') no-repeat center/cover;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 4px solid #ffcc00;
+        }
+        header h1 {
+            font-size: 3rem;
+            color: #ffcc00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2rem;
+            color: #a8a8b3;
+        }
 
-    header {
-      text-align: center;
-      padding: 25px;
-      background-color: #111;
-      border-bottom: 2px solid #333;
-    }
+        /* Menu de Navegação */
+        nav {
+            background-color: #191920;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #29292e;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        nav ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: #e1e1e6;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: #ffcc00;
+            color: #121214;
+            text-decoration: none;
+        }
 
-    h1 {
-      margin: 0;
-      color: #f5c518;
-    }
+        /* Container Principal */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
 
-    main {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      padding: 20px;
-    }
+        /* Seções */
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 70px; /* Para o link do menu não cobrir o título */
+        }
+        h2 {
+            font-size: 2rem;
+            color: #ffcc00;
+            border-left: 5px solid #ffcc00;
+            padding-left: 10px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
 
-    .card {
-      background-color: #1a1a1a;
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px solid #333;
-      transition: 0.3s;
-      cursor: pointer;
-    }
+        /* Grid de Cards (Vilões, Jogos e LEGO) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background-color: #202024;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #29292e;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #ffcc00;
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .card-content h3 {
+            margin-bottom: 10px;
+            color: #fff;
+        }
 
-    .card:hover {
-      transform: scale(1.05);
-      border-color: #f5c518;
-    }
+        /* Estatísticas */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .stat-box {
+            background-color: #202024;
+            padding: 30px;
+            border-radius: 8px;
+            border-bottom: 4px solid #ffcc00;
+        }
+        .stat-box h3 {
+            font-size: 2.5rem;
+            color: #ffcc00;
+            margin-bottom: 5px;
+        }
 
-    footer {
-      text-align: center;
-      padding: 10px;
-      background-color: #111;
-      border-top: 2px solid #333;
-      font-size: 12px;
-      color: #aaa;
-    }
-  </style>
+        /* Curiosidades */
+        .curiosidades-list {
+            background-color: #202024;
+            padding: 30px;
+            border-radius: 8px;
+            list-style-position: inside;
+        }
+        .curiosidades-list li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #29292e;
+            padding-bottom: 10px;
+        }
+        .curiosidades-list li:last-child {
+            border: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #09090a;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            border-top: 1px solid #29292e;
+            color: #7c7c8a;
+        }
+    </style>
 </head>
-
 <body>
 
-  <header>
-    <h1>🦇 Curiosidades do Batman</h1>
-    <p>Fatos interessantes sobre o Cavaleiro das Trevas</p>
-  </header>
+    <header>
+        <h1>Gotham Nexus</h1>
+        <p>Tudo sobre o Cavaleiro das Trevas em um só lugar</p>
+    </header>
 
-  <main id="container"></main>
+    <nav>
+        <ul>
+            <li><a href="#estatisticas">Estatísticas</a></li>
+            <li><a href="#viloes">Galeria de Vilões</a></li>
+            <li><a href="#jogos">Jogos</a></li>
+            <li><a href="#curiosidades">Curiosidades</a></li>
+            <li><a href="#lego">Universo LEGO</a></li>
+        </ul>
+    </nav>
 
-  <footer>
-    Feito para fãs do Batman 🦇
-  </footer>
+    <div class="container">
 
-  <script>
-    const curiosidades = [
-      "Batman já criou planos para derrotar até aliados da Liga da Justiça.",
-      "O Bat-sinal é mais simbólico do que um sistema de comunicação eficiente.",
-      "A identidade de Batman já foi descoberta várias vezes nos quadrinhos.",
-      "Bruce Wayne aprendeu vários estilos de luta pelo mundo inteiro.",
-      "Batman tem a regra de não matar seus inimigos na maioria das versões.",
-      "O uniforme do Batman foi feito para causar medo nos criminosos.",
-      "Em algumas histórias, Batman é mais detetive do que lutador.",
-      "Coringa e Batman são opostos: caos vs ordem.",
-      "Batman depende muito da tecnologia da Wayne Enterprises.",
-      "Gotham City é inspirada em grandes cidades como Nova York.",
-      "O Batmóvel muda em praticamente todas as versões.",
-      "Batman não tem superpoderes — só inteligência e treino extremo."
-    ];
+        <section id="estatisticas">
+            <h2>Ficha e Estatísticas</h2>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <h3>1939</h3>
+                    <p>Ano de Criação (Detective Comics #27)</p>
+                </div>
+                <div class="stat-box">
+                    <h3>100%</h3>
+                    <p>Humano (Sem superpoderes)</p>
+                </div>
+                <div class="stat-box">
+                    <h3>210 lbs</h3>
+                    <p>Peso (Aprox. 95 kg)</p>
+                </div>
+                <div class="stat-box">
+                    <h3>QI 192</h3>
+                    <p>Maior Detetive do Mundo</p>
+                </div>
+            </div>
+        </section>
 
-    const container = document.getElementById("container");
+        <section id="viloes">
+            <h2>Galeria de Vilões (Arkham)</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?auto=format&fit=crop&w=500&q=80" alt="Coringa (Representação Conceitual)">
+                    <div class="card-content">
+                        <h3>O Coringa</h3>
+                        <p>O maior nêmesis do Batman. Um gênio psicótico imprevisível que busca provar que qualquer um pode enlouquecer num dia ruim.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80" alt="Mulher-Gato">
+                    <div class="card-content">
+                        <h3>Mulher-Gato</h3>
+                        <p>Selina Kyle, a ladra mais habilidosa de Gotham. Uma anti-heroína cujo relacionamento com o Batman vive entre o dever e a paixão.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=500&q=80" alt="Duas-Caras">
+                    <div class="card-content">
+                        <h3>Duas-Caras</h3>
+                        <p>O ex-promotor Harvey Dent, que decide o destino de suas vítimas na jogada de uma moeda de duas caras danificada.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    curiosidades.forEach(texto => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerText = texto;
-      container.appendChild(card);
-    });
-  </script>
+        <section id="jogos">
+            <h2>Jogos de Destaque</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=80" alt="Arkham Series">
+                    <div class="card-content">
+                        <h3>Série Batman: Arkham</h3>
+                        <p>Desenvolvida pela Rocksteady, redefiniu os jogos de super-heróis com combate fluido e uma Gotham sombria e explorável.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1551103782-8ab07afd45c1?auto=format&fit=crop&w=500&q=80" alt="Telltale">
+                    <div class="card-content">
+                        <h3>Batman: The Telltale Series</h3>
+                        <p>Focado na narrativa e escolhas, permitindo que você jogue tanto na pele do Batman quanto gerenciando a vida de Bruce Wayne.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="curiosidades">
+            <h2>Curiosidades sobre o Morcego</h2>
+            <ul class="curiosidades-list">
+                <li><strong>O Nome:</strong> Bruce Wayne foi nomeado em homenagem ao herói escocês Robert the Bruce e ao general revolucionário Mad Anthony Wayne.</li>
+                <li><strong>Gotham City:</strong> O nome foi escolhido pelo escritor Bill Finger ao abrir uma lista telefônica e ver o anúncio "Gotham Jewelers".</li>
+                <li><strong>Superman:</strong> O Batman guarda um anel de Kriptonita dado pelo próprio Superman, para caso o Homem de Aço perca o controle um dia.</li>
+            </ul>
+        </section>
+
+        <section id="lego">
+            <h2>O Universo LEGO Batman</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1566140967404-b8b3932483f5?auto=format&fit=crop&w=500&q=80" alt="LEGO Batman O Filme">
+                    <div class="card-content">
+                        <h3>LEGO Batman: O Filme</h3>
+                        <p>Uma das animações mais aclamadas do personagem, cheia de humor autoirônico, referências a todas as eras e muita diversão.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1585366119957-e5733be3c304?auto=format&fit=crop&w=500&q=80" alt="Jogos LEGO">
+                    <div class="card-content">
+                        <h3>Trilogia de Jogos LEGO</h3>
+                        <p>Sucessos de venda que misturam a seriedade do herói com blocos de montar, heróis da Liga da Justiça e cooperativo local insuperável.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Gotham Nexus. Desenvolvido por um fã do Cavaleiro das Trevas.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">Batman e todos os personagens relacionados são marcas registradas da DC Comics.</p>
+    </footer>
 
 </body>
 </html>
